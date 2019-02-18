@@ -10,7 +10,7 @@ class TodoFilter extends Component {
   onFilterChange(filter) {
     this.props.todoStore.changeFilter(filter)
   }
-  
+
   onSearchChange(e) {
     this.props.todoStore.changeSearch(e.target.value)
   }
