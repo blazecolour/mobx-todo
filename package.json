@@ -4,13 +4,16 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
+    "lodash": "^4.17.11",
     "mobx": "^5.9.0",
     "mobx-logger": "^0.7.1",
     "mobx-react": "^5.4.3",
     "mobx-react-devtools": "^6.0.3",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "recompose": "^0.30.0",
+    "styled-components": "^4.1.3"
   },
   "scripts": {
     "start": "react-app-rewired start",

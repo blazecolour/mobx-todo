@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
+import './TodoForm.css'
+import './Button.css'
 
 @inject('todoStore')
 @observer
@@ -8,34 +10,41 @@ class TodoForm extends Component {
     newTitle: ''
   }
 
-  render() {
-    return (
-      <div className='todo-form'>
-        <input
-          className='form-control'
-          value={this.state.newTitle}
-          onChange={(e) => this.changeTitle(e)}
-        />
-        <button
-          className='btn btn-primary'
-          onClick={() => this.onAddClick()}
-        >
-          Add todo
-        </button>
-      </div>
-    );
-  }
-
-  onAddClick() {
+  onAddClick(e) {
+    e.preventDefault()
     this.props.todoStore.addTodo(this.state.newTitle)
     this.setState({
       newTitle: ''
     })
   }
+  
   changeTitle(e) {
     this.setState({
       newTitle: e.target.value
     })
+  }
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={(e) => this.onAddClick(e)}>
+        <input
+          className="matter-textfield-standard"
+          type="text"
+          placeholder='Add todo...'
+          required
+          value={this.state.newTitle}
+          autoFocus
+          onChange={(e) => this.changeTitle(e)}
+        />
+        <button
+          className="matter-button-outlined"
+          type="submit">
+          Add todo
+        </button>
+        </form>
+      </div>
+    );
   }
 }
 

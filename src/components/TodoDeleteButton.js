@@ -1,10 +1,12 @@
-import React from 'react';
+import React from 'react'
+import './Button.css'
 
-export default ({ onDelete }) => (
-  <i
-    className="delete material-icons md-36"
-    onClick={onDelete}
-  >
-  clear
-  </i>
+const TodoDeleteButton = ({ onDelete }) => (
+  <button
+    className="matter-button-outlined"
+    onClick={onDelete}>
+      clear
+  </button>
 )
+
+export default TodoDeleteButton

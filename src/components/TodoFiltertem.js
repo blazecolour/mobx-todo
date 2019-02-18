@@ -1,17 +1,19 @@
 import React from 'react'
-import classnames from 'classnames'
+import './TodoFilterItem.css'
 
-export default ({ isActive, onClick, filterType }) => {
-  const classes = classnames({
-    'is-active': isActive
-  }, 'filter-item')
-
+const TodoFilterItem = ({ onClick, filterType }) => {
   return (
-    <li
-      onClick={onClick}
-      className={classes}
-    >
-      {filterType}
+    <li>
+      <span>
+        <input
+          type="radio"
+          name="filterType"
+          value={filterType}
+          onChange={onClick} />
+        {filterType}
+      </span>
     </li>
   )
 }
+
+export default TodoFilterItem

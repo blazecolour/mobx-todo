@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { observer, inject } from 'mobx-react';
-import TodoItem from './TodoItem';
+import React, { Component } from 'react'
+import { observer, inject } from 'mobx-react'
+import TodoItem from './TodoItem'
 
 @inject('todoStore')
 @observer
 class TodoList extends Component {
   render() {
-    const { todoStore } = this.props;
+    const { todoStore } = this.props
     return (
       <div>
-        <div className='todo-list'>
+        <div>
               {todoStore.filteredTodos.map(todo => (
                 <TodoItem
                   key={todo.id}
@@ -20,7 +20,7 @@ class TodoList extends Component {
         </div>
         {
           !todoStore.filteredTodos.length &&
-            <h3 className='text-xs-center m-t-1'>
+            <h3>
               No todos
             </h3>
         }
@@ -29,4 +29,4 @@ class TodoList extends Component {
   }
 }
 
-export default TodoList;
+export default TodoList

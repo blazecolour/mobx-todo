@@ -1,21 +1,17 @@
 import React from 'react'
-import classnames from 'classnames'
+import cx from 'classnames'
+import './Button.css'
 
-export default ({ onToggle, isCompleted }) => (
-  <div
-    className={classnames({ 'is-checked': isCompleted })}
+const TodoCompletedButton = ({ onToggle, isCompleted }) => (
+  <button
+    className={cx(
+      { 'is-checked': isCompleted },
+      'matter-button-outlined'
+      )}
     onClick={onToggle}
   >
-    {/* <ReactCSSTransitionGroup
-      transitionName='fade'
-      transitionEnterTimeout={200}
-      transitionLeaveTimeout={200}
-      className='complete'
-    >
-      {
-        isCompleted &&
-          <i key='0' className="material-icons md-24">check</i>
-      }
-    </ReactCSSTransitionGroup> */}
-  </div>
+    completed
+  </button>
 )
+
+export default TodoCompletedButton

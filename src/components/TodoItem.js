@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import TodoDeleteButton from './TodoDeleteButton'
 import TodoCompletedButton from './TodoCompletedButton'
-import classnames from 'classnames'
+import cx from 'classnames'
 
 @inject('todoStore')
 @observer
 class TodoItem extends Component {
   render() {
     const { todo, todoStore } = this.props
-    const classes = classnames(
+    const cn = cx(
       {
         completed: todo.isCompleted
       },
@@ -17,10 +17,10 @@ class TodoItem extends Component {
     )
 
     return (
-      <div className={classes}>
+      <div className={cn}>
         <div className="todo-item-title">
           <input
-            className="form-control"
+            className="matter-textfield-standard"
             value={todo.title}
             onChange={e => todo.setTitle(e.target.value)}
           />
