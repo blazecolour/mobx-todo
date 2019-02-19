@@ -12,12 +12,12 @@ class Todo {
     this.id = id
   }
 
-  @action toggleCompleted(completed = !this.isCompleted) {
-    this.isCompleted = !!completed
+  @action toggleCompleted() {
+    this.isCompleted = !this.isCompleted
   }
 
-  @action setTitle(title) {
-    this.title = title || ''
+  @action setTitle(title = '') {
+    this.title = title
   }
 }
 
