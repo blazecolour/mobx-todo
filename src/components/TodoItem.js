@@ -1,41 +1,31 @@
-import React, { Component } from 'react'
+import React, { Fragment } from 'react'
 import { observer, inject } from 'mobx-react'
+import { compose } from 'recompose'
 import TodoDeleteButton from './TodoDeleteButton'
 import TodoCompletedButton from './TodoCompletedButton'
-import cx from 'classnames'
 
-@inject('todoStore')
-@observer
-class TodoItem extends Component {
-  render() {
-    const { todo, todoStore } = this.props
-    const cn = cx(
-      {
-        completed: todo.isCompleted
-      },
-      'todo-item'
-    )
+export const TodoItem = ({ todo, todoStore }) => (
+  <Fragment>
+    <input
+      className="matter-textfield-standard"
+      value={todo.title}
+      onChange={e => todo.setTitle(e.target.value)}
+    />
+    <div>
+      <TodoCompletedButton
+        onToggle={() => todo.toggleCompleted()}
+        isCompleted={todo.isCompleted}
+      />
+      <TodoDeleteButton
+      onDelete={() => todoStore.deleteTodo(todo.id)}
+      />
+    </div>
+  </Fragment>
+)
 
-    return (
-      <div className={cn}>
-        <div className="todo-item-title">
-          <input
-            className="matter-textfield-standard"
-            value={todo.title}
-            onChange={e => todo.setTitle(e.target.value)}
-          />
-          <div className="input-highlight" />
-        </div>
-        <div className="options">
-          <TodoCompletedButton
-            onToggle={() => todo.toggleCompleted()}
-            isCompleted={todo.isCompleted}
-          />
-          <TodoDeleteButton onDelete={() => todoStore.deleteTodo(todo.id)} />
-        </div>
-      </div>
-    )
-  }
-}
+const TodoItemComposed = compose(
+  inject('todoStore'),
+  observer
+)(TodoItem)
 
-export default TodoItem
+export default TodoItemComposed
