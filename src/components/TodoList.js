@@ -1,30 +1,28 @@
 import React, { Fragment } from 'react'
 import { observer, inject } from 'mobx-react'
-import { compose } from 'recompose'
+import { compose, withProps } from 'recompose'
 import TodoItem from './TodoItem'
 
-export const TodoList = ({ todoStore }) => (
+export const TodoList = ({ todoStore: { filteredTodos } }) => (
   <Fragment>
     <div>
-      {todoStore.filteredTodos.map(todo => (
+      {filteredTodos.map(todo => (
         <TodoItem
-          key={todo.id}
-          todo={todo}
+        key={todo.id}
+        todo={todo}
         />
-    ))}
+      ))}
     </div>
-      {
-        !todoStore.filteredTodos.length &&
-          <h3>
-            No todos
-          </h3>
-      }
+    {!filteredTodos.length && <h3>No todos</h3>}
   </Fragment>
 )
 
 const TodoListComposed = compose(
   inject('todoStore'),
-  observer
+  observer,
+  withProps(({ todoStore: { filteredTodos } }) => (
+    { todoStore: { filteredTodos } }
+  ))
 )(TodoList)
 
 export default TodoListComposed

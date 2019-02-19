@@ -10,7 +10,7 @@ class TodoForm extends Component {
     newTitle: ''
   }
 
-  onAddClick(e) {
+  onAddClick = (e) => {
     e.preventDefault()
     this.props.todoStore.addTodo(this.state.newTitle)
     this.setState({
@@ -18,7 +18,7 @@ class TodoForm extends Component {
     })
   }
   
-  changeTitle(e) {
+  changeTitle = (e) => {
     this.setState({
       newTitle: e.target.value
     })
@@ -27,7 +27,7 @@ class TodoForm extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={(e) => this.onAddClick(e)}>
+        <form onSubmit={this.onAddClick}>
         <input
           className="matter-textfield-standard"
           type="text"
@@ -35,7 +35,7 @@ class TodoForm extends Component {
           required
           value={this.state.newTitle}
           autoFocus
-          onChange={(e) => this.changeTitle(e)}
+          onChange={this.changeTitle}
         />
         <button
           className="matter-button-outlined"
